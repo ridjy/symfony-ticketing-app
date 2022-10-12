@@ -5,17 +5,18 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\EventRepository;
 
 class CoreController extends AbstractController
 {
     /**
-     * @Route("/core", name="homepage")
+     * @Route("/", name="homepage")
      */
-    public function index(): Response
+    public function homepage(EventRepository $eventRepository): Response
     {
-        return $this->render('core/index.html.twig', [
-            'controller_name' => 'CoreController',
-        ]);
+        $events = $eventRepository->findAll();
+
+        return $this->render('core/index.html.twig', ['events' => $events]);
     }
 
     public function about(): Response

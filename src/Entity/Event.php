@@ -6,6 +6,9 @@ use App\Repository\EventRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use DateInterval;
+use DateTime;
+use DateTimeImmutable;
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
@@ -45,7 +48,7 @@ class Event
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": false})
      */
     private $isPublished;
 
@@ -65,13 +68,15 @@ class Event
     private $publishedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="events")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="events", cascade={"persist"})
      */
     private $tags;
 
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->createAt = new DateTimeImmutable();
+        $this->isPublished = false;
     }
 
     public function getId(): ?int
