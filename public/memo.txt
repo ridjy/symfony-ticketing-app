@@ -3,3 +3,6 @@ composer create-project symfony/website-skeleton symfony-ticketing-app 5.4.*
 
 #create bdd
 php bin/console doctrine:database:create
+
+#afficher les routes de l'appli
+symfony console debug:router
