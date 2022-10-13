@@ -6,3 +6,8 @@ php bin/console doctrine:database:create
 
 #afficher les routes de l'appli
 symfony console debug:router
+
+#données test avec orm-fixtures
+composer require --dev orm-fixtures
+composer require --dev doctrine/doctrine-fixtures-bundle
+

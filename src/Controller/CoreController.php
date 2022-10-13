@@ -14,7 +14,13 @@ class CoreController extends AbstractController
      */
     public function homepage(EventRepository $eventRepository): Response
     {
-        $events = $eventRepository->findAll();
+        //limit 12 offset 0
+        $events = $eventRepository->findBy(
+            ['isPublished' => true],
+            ['eventDate' => 'ASC'],
+            12,
+            0
+        );
 
         return $this->render('core/index.html.twig', ['events' => $events]);
     }
