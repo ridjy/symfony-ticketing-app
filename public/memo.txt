@@ -10,4 +10,9 @@ symfony console debug:router
 #données test avec orm-fixtures
 composer require --dev orm-fixtures
 composer require --dev doctrine/doctrine-fixtures-bundle
+- on ajoute manuellement les insertions à la base dans la fonction load 
+- on lance la commande pour les ajouter en bdd
+symfony console doctrine:fixtures:load
 
+#affichage de la date personnalisé
+composer require twig/intl-extra

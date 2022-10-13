@@ -16,9 +16,9 @@ class EventController extends AbstractController
     /**
      * @Route("/events/{id}", name="show_event", requirements={"id"="\d+"})
      */
-    public function show($id): Response
+    public function show(Event $event): Response
     {
-        return new Response("<h1>Affichage de l'événement {$id}.</h1>");
+        return $this->render('event/show.html.twig', ['event' => $event]);
     }
 
     /**
